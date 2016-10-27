@@ -1,7 +1,21 @@
 from selenium import webdriver
-from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+import unittest
 
-browser = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver')
-browser.get('http://localhost:8000')
+class NewVisitorTest(unittest.TestCase):
 
-assert 'Django' in browser.title
+    def setUp(self):
+        self.browser = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver')
+        self.browser.implicitly_wait(3)
+    def tearDown(self):
+        self.browser.quit()
+
+    def test_can_start_a_list_and_retrieve_it_later(self):
+        # check homepage of website
+        self.browser.get('http://localhost:8000')
+
+        # check title and header to mention to-do lists
+        self.assertIn('To-Do', self.browser.title)
+        self.fail('Finish the test!')
+
+if __name__ == '__main__':
+    unittest.main(warnings='ignore')
