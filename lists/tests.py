@@ -50,7 +50,8 @@ class HomePageTest(TestCase):
         request.POST['item_text'] = 'A new list item'
 
         # request page with POST with specified values, store in response
-        response = home_page(request)
+        # response = home_page(request)
+        home_page(request)
 
         self.assertEqual(Item.objects.count(), 1)
         new_item = Item.objects.first()
