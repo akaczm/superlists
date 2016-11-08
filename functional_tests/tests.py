@@ -51,7 +51,8 @@ class NewVisitorTest(StaticLiveServerTestCase):
         inputbox.send_keys(Keys.ENTER)
 
         self.check_for_row_in_list_table('1: Buy peacock feathers')
-        self.check_for_row_in_list_table('2: Use peacock feathers to make a fly')
+        self.check_for_row_in_list_table(
+            ('2: Use peacock feathers to make a fly'))
 
         # A new user, Francis comes over to the site.
 
@@ -102,7 +103,7 @@ class NewVisitorTest(StaticLiveServerTestCase):
         inputbox.send_keys('testing\n')
         inputbox = self.browser.find_element_by_id('id_new_item')
         self.assertAlmostEqual(
-            inputbox.location['x'] + inputbox.size['width'] /2,
+            inputbox.location['x'] + inputbox.size['width'] / 2,
             512,
             delta=5
             )
